@@ -33,4 +33,3 @@ function showMainPage() {
 
 // Llamada inicial para mostrar la página principal
 showMainPage();
-
