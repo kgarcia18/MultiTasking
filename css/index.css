@@ -54,7 +54,18 @@ body {
 .login-left div {
     width: 100%;
     height: 200px;
+    overflow: hidden; /* Opcional: oculta cualquier parte de la imagen que se desborde */
+    display: flex; /* Alinea el contenido si es necesario */
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
     border: 2px solid #000;
+}
+
+
+.login-left img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
 }
 
 .login-right {
@@ -96,7 +107,9 @@ body {
     color: #007bff;
     cursor: pointer;
 }
-
+.crearcuenta , .git{
+    text-decoration: none;
+}
 /* Header Styles */
 header {
     display: flex;
@@ -185,3 +198,27 @@ button.status-button {
     color: #fff;
     cursor: pointer;
 }
+/* Estilos para el contenedor del perfil */
+.profile-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Ajusta el margen según sea necesario */
+}
+
+/* Estilos para la imagen del perfil */
+.profile-img {
+    width: 40px; /* Ajusta el tamaño según sea necesario */
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+}
+
+/* Estilos para el texto del perfil */
+.profile-text {
+    font-size: 16px; /* Ajusta el tamaño de la fuente según sea necesario */
+    color: #333; /* Ajusta el color del texto según sea necesario */
+    margin-left: 10px; /* Ajusta el margen según sea necesario */
+}
+
+
+
