@@ -1,25 +1,25 @@
-const usuariosRegister = [
+const registrodeusuario = [
     {
         nombreUser: "Kathy",
         correoUser: "kgarcia@sc.edu.gt",
         passUser: "12345",
-        perfil: "img/snoopy1.jpg" // Ruta a la imagen
+        perfil: "img/snoopy1.jpg"
     },
     {
         nombreUser: "Jaz",
         correoUser: "katherinegarcia0918@gmail.com",
         passUser: "1234",
-        perfil: "img/snoopy2.jpg" // Ruta a la imagen
+        perfil: "img/snoopy2.jpg"
     }
 ];
 
 // Crear y mostrar el modal de inicio de sesión
-function showLoginModal() {
-    const loginModal = document.createElement('div');
+function mostrarventadadeinicio() {
+    let loginModal = document.createElement('div');
     loginModal.id = 'loginModal';
     loginModal.classList.add('modal');
 
-    const modalContent = `
+    let contenidodelmodal = `
         <div class="modal-content login-container">
         <a href="https://github.com/kgarcia18?tab=repositories" class="git">GitHub</a>
             <div class="login-left">
@@ -39,28 +39,29 @@ function showLoginModal() {
         </div>
     `;
 
-    loginModal.innerHTML = modalContent;
+    loginModal.innerHTML = contenidodelmodal;
     document.body.appendChild(loginModal);
 
-    const betaButton = document.getElementById('betaButton');
-    betaButton.addEventListener('click', () => {
-        // Puedes optar por pasar un usuario de prueba aquí si lo deseas
-        const testUser = usuariosRegister[0]; // Por ejemplo, Kathy
+    let betabtn = document.getElementById('betaButton');
+    betabtn.addEventListener('click', () => {
+        // Puedes optar por pasar un usuario prueba
+        let testUser = registrodeusuario[0]
         guardarUsuario(testUser);
         hideLoginModal();
-        showMainPage(); // Asegúrate de que esta función esté correctamente importada
+        showMainPage(); 
+        
     });
 
-    const loginForm = document.getElementById('loginForm');
-    loginForm.addEventListener('submit', (event) => {
+    let formulario = document.getElementById('loginForm');
+    formulario.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const usuario = document.getElementById('usuario').value;
-        const password = document.getElementById('password').value;
-        const errorMessage = document.getElementById('error-message');
+        let usuario = document.getElementById('usuario').value;
+        let password = document.getElementById('password').value;
+        let errorMessage = document.getElementById('error-message');
 
         // Verificar si las credenciales coinciden con algún usuario en la lista
-        const user = usuariosRegister.find(user => 
+        let user = registrodeusuario.find(user => 
             (user.nombreUser === usuario || user.correoUser === usuario) && 
             user.passUser === password
         );
@@ -87,4 +88,4 @@ function hideLoginModal() {
     loginModal.style.display = 'none';
 }
 
-showLoginModal();
+mostrarventadadeinicio();

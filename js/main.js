@@ -1,57 +1,57 @@
-import { createTaskTable, showTaskForm, loadTasks } from './tasks.js';
-import { searchTasksByName } from './search.js';
+import { creartareatabla, mostrarformulario, cargartareas } from './tasks.js';
+import { buscartareas } from './search.js';
 
-// Función para mostrar la página principal después del login
-function showMainPage() {
-    const root = document.getElementById('root'); // Asegúrate de que 'root' esté definido
+//mostrar la página principal
+function paginaprincipal() {
+    let root = document.getElementById('root'); 
 
     root.style.display = 'flex';
 
-    const header = document.createElement('header');
-    const title = document.createElement('h1');
+    let header = document.createElement('header');
+    let title = document.createElement('h1');
     title.textContent = 'Multitasking';
     
-    const searchContainer = document.createElement('div');
-    const searchInput = document.createElement('input');
-    searchInput.placeholder = 'Buscar por nombre de la tarea...';
+    let buscarcontenedor = document.createElement('div');
+    let búsquedaentrada = document.createElement('input');
+    búsquedaentrada.placeholder = 'Buscar por nombre';
 
     // Asigna el evento de búsqueda al input
-    searchInput.addEventListener('input', () => {
-        searchTasksByName(searchInput.value);
+    búsquedaentrada.addEventListener('input', () => {
+        buscartareas(búsquedaentrada.value);
     });
     
-    const addButton = document.createElement('button');
-    addButton.textContent = '+';
-    addButton.addEventListener('click', showTaskForm);
+    let btnmas = document.createElement('button');
+    btnmas.textContent = '+';
+    btnmas.addEventListener('click', mostrarformulario);
 
     // Crear y agregar el elemento del perfil
-    const profileContainer = document.createElement('div');
-    profileContainer.classList.add('profile-container');
-    const profileImg = document.createElement('img');
-    profileImg.classList.add('profile-img');
+    let perfilcontenedor = document.createElement('div');
+    perfilcontenedor.classList.add('profile-container');
+    let imgperfil = document.createElement('img');
+    imgperfil.classList.add('profile-img');
     
     // Obtener el usuario del localStorage
-    const storedUser = JSON.parse(localStorage.getItem('usuario'));
-    if (storedUser && storedUser.perfil) {
-        profileImg.src = storedUser.perfil;
-        profileContainer.appendChild(profileImg);
+    let almacenarusuario = JSON.parse(localStorage.getItem('usuario'));
+    if (almacenarusuario && almacenarusuario.perfil) {
+        imgperfil.src = almacenarusuario.perfil;
+        perfilcontenedor.appendChild(imgperfil);
     }
 
-    searchContainer.appendChild(searchInput);
-    searchContainer.appendChild(addButton);
-    if (storedUser) {
-        searchContainer.appendChild(profileContainer);
+    buscarcontenedor.appendChild(búsquedaentrada);
+    buscarcontenedor.appendChild(btnmas);
+    if (almacenarusuario) {
+        buscarcontenedor.appendChild(perfilcontenedor);
     }
 
     header.appendChild(title);
-    header.appendChild(searchContainer);
+    header.appendChild(buscarcontenedor);
 
     root.appendChild(header);
-    root.appendChild(createTaskTable());
+    root.appendChild(creartareatabla());
 
     // Cargar tareas al iniciar
-    loadTasks();
+    cargartareas();
 }
 
 // Llamada inicial para mostrar la página principal
-showMainPage();
+paginaprincipal();

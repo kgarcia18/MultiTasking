@@ -1,89 +1,89 @@
 import { guardarAsignaciones, obtenerAsignaciones } from './storage.js';
 
 // Función para crear la tabla de tareas
-function createTaskTable() {
-    const taskTable = document.createElement('table');
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
+function creartareatabla() {
+    let tabladetareas = document.createElement('table');
+    let tabla = document.createElement('thead');
+    let encabezado = document.createElement('tr');
 
-    const thTaskName = document.createElement('th');
-    thTaskName.textContent = 'Nombre de la Tarea';
-    const thAssigned = document.createElement('th');
-    thAssigned.textContent = 'Asignado';
-    const thDateRange = document.createElement('th');
-    thDateRange.textContent = 'Rango de Fechas';
-    const thStatus = document.createElement('th');
-    thStatus.textContent = 'Estado';
-    const thActions = document.createElement('th');
+    let nombredetarea = document.createElement('th');
+    nombredetarea.textContent = 'Nombre de la Tarea';
+    let asignacion = document.createElement('th');
+    asignacion.textContent = 'Asignado';
+    let rangofechas = document.createElement('th');
+    rangofechas.textContent = 'Rango de Fechas';
+    let estado = document.createElement('th');
+    estado.textContent = 'Estado';
+    let acciones = document.createElement('th');
 
-    headerRow.appendChild(thTaskName);
-    headerRow.appendChild(thAssigned);
-    headerRow.appendChild(thDateRange);
-    headerRow.appendChild(thStatus);
-    headerRow.appendChild(thActions);
-    thead.appendChild(headerRow);
-    taskTable.appendChild(thead);
+    encabezado.appendChild(nombredetarea);
+    encabezado.appendChild(asignacion);
+    encabezado.appendChild(rangofechas);
+    encabezado.appendChild(estado);
+    encabezado.appendChild(acciones);
+    tabla.appendChild(encabezado);
+    tabladetareas.appendChild(tabla);
 
-    const tbody = document.createElement('tbody');
-    taskTable.appendChild(tbody);
+    let cuerpo = document.createElement('tbody');
+    tabladetareas.appendChild(cuerpo);
 
-    return taskTable;
+    return tabladetareas;
 }
 
 // Función para mostrar el formulario de tareas
-function showTaskForm() {
-    const taskForm = document.createElement('div');
-    taskForm.classList.add('task-form');
+function mostrarformulario() {
+    let formulariodetareas = document.createElement('div');
+    formulariodetareas.classList.add('task-form');
 
-    const taskNameInput = document.createElement('input');
-    taskNameInput.placeholder = 'Nombre de la tarea';
+    let nombredelatarea = document.createElement('input');
+    nombredelatarea.placeholder = 'Nombre de la tarea';
 
-    const assignedInput = document.createElement('input');
-    assignedInput.placeholder = 'Asignado (separar múltiples nombres por comas)';
+    let entradadeasignacion = document.createElement('input');
+    entradadeasignacion.placeholder = 'Asignado para... (separa por comas los nombres)';
 
-    const dateContainer = document.createElement('div');
-    const startDateInput = document.createElement('input');
-    startDateInput.type = 'date';
-    startDateInput.placeholder = 'Fecha de inicio';
+    let cuadrodefechas = document.createElement('div');
+    let fechainicio = document.createElement('input');
+    fechainicio.type = 'date';
+    fechainicio.placeholder = 'Fecha de inicio';
 
-    const endDateInput = document.createElement('input');
-    endDateInput.type = 'date';
-    endDateInput.placeholder = 'Fecha de entrega';
+    let fechadeentrega = document.createElement('input');
+    fechadeentrega.type = 'date';
+    fechadeentrega.placeholder = 'Fecha de entrega';
 
-    dateContainer.appendChild(startDateInput);
-    dateContainer.appendChild(endDateInput);
+    cuadrodefechas.appendChild(fechainicio);
+    cuadrodefechas.appendChild(fechadeentrega);
 
-    const statusSelect = document.createElement('select');
-    const statusOptions = ['Sin Iniciar', 'Asignado', 'Completado', 'Completado con retraso', 'No presentado'];
-    statusOptions.forEach(optionText => {
-        const option = document.createElement('option');
+    let seleccionarestado = document.createElement('select');
+    let estados = ['Sin Iniciar', 'Asignado', 'Completado', 'Completado con retraso', 'No presentado'];
+    estados.forEach(optionText => {
+        let option = document.createElement('option');
         option.value = optionText;
         option.textContent = optionText;
-        statusSelect.appendChild(option);
+        seleccionarestado.appendChild(option);
     });
 
-    taskForm.appendChild(taskNameInput);
-    taskForm.appendChild(assignedInput);
-    taskForm.appendChild(dateContainer);
-    taskForm.appendChild(statusSelect);
+    formulariodetareas.appendChild(nombredelatarea);
+    formulariodetareas.appendChild(entradadeasignacion);
+    formulariodetareas.appendChild(cuadrodefechas);
+    formulariodetareas.appendChild(seleccionarestado);
 
-    const saveButton = document.createElement('button');
-    saveButton.textContent = 'Guardar tarea';
-    saveButton.addEventListener('click', () => {
-        saveTask(taskNameInput.value, assignedInput.value, startDateInput.value, endDateInput.value, statusSelect.value);
-        taskForm.style.display = 'none';
+    let btnguardar = document.createElement('button');
+    btnguardar.textContent = 'Guardar tarea';
+    btnguardar.addEventListener('click', () => {
+        guardarlastareas(nombredelatarea.value, entradadeasignacion.value, fechainicio.value, fechadeentrega.value, seleccionarestado.value);
+        formulariodetareas.style.display = 'none';
     });
 
-    taskForm.appendChild(saveButton);
-    document.body.appendChild(taskForm);
-    taskForm.style.display = 'block';
+    formulariodetareas.appendChild(btnguardar);
+    document.body.appendChild(formulariodetareas);
+    formulariodetareas.style.display = 'block';
 }
 
 // Función para guardar la tarea y agregarla a la tabla
-function saveTask(name, assigned, startDate, endDate, status) {
-    const assignments = obtenerAsignaciones();
+function guardarlastareas(name, assigned, startDate, endDate, status) {
+    let asignaciones = obtenerAsignaciones();
 
-    const newTask = {
+    let tareanueva = {
         name: name,
         assigned: assigned.split(',').map(name => name.trim()),
         startDate: startDate,
@@ -91,69 +91,69 @@ function saveTask(name, assigned, startDate, endDate, status) {
         status: status
     };
 
-    assignments.push(newTask);
-    guardarAsignaciones(assignments);
+    asignaciones.push(tareanueva);
+    guardarAsignaciones(asignaciones);
 
-    addTaskToTable(newTask);
+    agregartabladetareas(tareanueva);
 }
 
 // Función para eliminar una tarea
-function deleteTask(index) {
-    const assignments = obtenerAsignaciones();
-    assignments.splice(index, 1);
-    guardarAsignaciones(assignments);
+function eliminartarea(index) {
+    let asignaciones = obtenerAsignaciones();
+    asignaciones.splice(index, 1);
+    guardarAsignaciones(asignaciones);
 
     // Volver a cargar las tareas en la tabla
-    const taskTable = document.querySelector('table tbody');
-    taskTable.innerHTML = ''; // Limpiar tabla
-    loadTasks(); // Volver a cargar tareas
+    let tablatareas = document.querySelector('table tbody');
+    tablatareas.innerHTML = ''; // Limpiar tabla
+    cargartareas(); // Volver a cargar tareas
 }
 
 // Función para agregar una tarea a la tabla
-function addTaskToTable(task, index) {
-    const taskTable = document.querySelector('table tbody');
+function agregartabladetareas(tarea, index) {
+    let tablatareas = document.querySelector('table tbody');
 
-    const taskRow = document.createElement('tr');
+    let filadetareas = document.createElement('tr');
 
-    const taskName = document.createElement('td');
-    taskName.textContent = task.name;
+    let nombredelatarea = document.createElement('td');
+    nombredelatarea.textContent = tarea.name;
 
-    const assignedCell = document.createElement('td');
-    task.assigned.forEach(name => {
-        const assignedBadge = document.createElement('span');
-        assignedBadge.textContent = name;
-        assignedBadge.style.marginRight = '5px';
-        assignedCell.appendChild(assignedBadge);
+    let asignacion = document.createElement('td');
+    tarea.assigned.forEach(name => {
+        let yaasignado = document.createElement('span');
+        yaasignado.textContent = name;
+        yaasignado.style.marginRight = '5px';
+        asignacion.appendChild(yaasignado);
     });
 
-    const dateCell = document.createElement('td');
-    dateCell.textContent = task.startDate && task.endDate ? `${task.startDate} - ${task.endDate}` : task.startDate;
+    let fechas = document.createElement('td');
+    fechas.textContent = tarea.startDate && tarea.endDate ? `${tarea.startDate} - ${tarea.endDate}` : tarea.startDate;
 
-    const statusCell = document.createElement('td');
-    const statusButton = document.createElement('button');
-    statusButton.textContent = task.status;
-    statusButton.classList.add('status-button');
-    statusCell.appendChild(statusButton);
+    let estados = document.createElement('td');
+    let btndeestado = document.createElement('button');
+    btndeestado.textContent = tarea.status;
+    btndeestado.classList.add('status-button');
+    estados.appendChild(btndeestado);
 
-    const actionsCell = document.createElement('td');
-    const deleteButton = document.createElement('button');
+    let acciones = document.createElement('td');
+    let deleteButton = document.createElement('button');
     deleteButton.textContent = 'Eliminar';
-    deleteButton.addEventListener('click', () => deleteTask(index));
-    actionsCell.appendChild(deleteButton);
+    deleteButton.addEventListener('click', () => eliminartarea(index));
+    acciones.appendChild(deleteButton);
 
-    taskRow.appendChild(taskName);
-    taskRow.appendChild(assignedCell);
-    taskRow.appendChild(dateCell);
-    taskRow.appendChild(statusCell);
-    taskRow.appendChild(actionsCell);
+    filadetareas.appendChild(nombredelatarea);
+    filadetareas.appendChild(asignacion);
+    filadetareas.appendChild(fechas);
+    filadetareas.appendChild(estados);
+    filadetareas.appendChild(acciones);
 
-    taskTable.appendChild(taskRow);
+    tablatareas.appendChild(filadetareas);
 }
 
 // Función para cargar tareas de localStorage y mostrarlas en la tabla
-function loadTasks() {
-    const assignments = obtenerAsignaciones();
-    assignments.forEach((task, index) => addTaskToTable(task, index));
+function cargartareas() {
+    let asignaciones = obtenerAsignaciones();
+    asignaciones.forEach((tarea, index) => agregartabladetareas(tarea, index));
 }
 
-export { createTaskTable, showTaskForm, loadTasks };
+export { creartareatabla, mostrarformulario, cargartareas };
